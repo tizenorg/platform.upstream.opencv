@@ -1,5 +1,6 @@
 file(GLOB HAAR_CASCADES haarcascades/*.xml)
 file(GLOB LBP_CASCADES lbpcascades/*.xml)
+file(GLOB HOG_CASCADES hogcascades/*.xml)
 
 if(ANDROID)
   install(FILES ${HAAR_CASCADES} DESTINATION sdk/etc/haarcascades COMPONENT libs)
@@ -7,6 +8,7 @@ if(ANDROID)
 elseif(NOT WIN32)
   install(FILES ${HAAR_CASCADES} DESTINATION share/OpenCV/haarcascades COMPONENT libs)
   install(FILES ${LBP_CASCADES}  DESTINATION share/OpenCV/lbpcascades  COMPONENT libs)
+  install(FILES ${HOG_CASCADES}  DESTINATION share/OpenCV/hogcascades  COMPONENT libs)
 endif()
 
 if(INSTALL_TESTS AND OPENCV_TEST_DATA_PATH)
