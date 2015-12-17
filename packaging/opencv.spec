@@ -2,7 +2,7 @@ Name: opencv
 VCS:  #e3ca2f3bdcac02e9780c2de7001310a2a61a483e-dirty
 Summary: OpenCV library
 Version: 2.4.9
-Release: 7
+Release: 8
 Group: Development/Libraries
 License: BSD-2.0 and LGPL-2.1+
 Source0: %{name}-%{version}.tar.gz
@@ -40,6 +40,14 @@ Requires(postun): /sbin/ldconfig
 
 %description
 The Open Computer Vision Library includes various algorithms for computer vision problems.
+
+%package devel
+Summary:    OpenCV Library (Dev)
+Group:      Development/Libraries
+Requires:    %{name} = %{version}-%{release}
+
+%description devel
+The Open Computer Vision Library (Dev) includes various algorithms for computer vision problems.
 
 %prep
 %setup -q
@@ -153,11 +161,12 @@ rm -rf %{buildroot}
 %files
 %manifest opencv.manifest
 %defattr(-,root,root,-)
-/usr/include/*
-%{_libdir}/*.so*
-%{_libdir}/pkgconfig/*.pc
-#/usr/lib/*.so*
-#/usr/lib/pkgconfig/*.pc
+%{_libdir}/*.so.*
 /usr/share/*
+
+%files devel
+/usr/include/*
+%{_libdir}/pkgconfig/*.pc
+%{_libdir}/*.so
 
 %doc
