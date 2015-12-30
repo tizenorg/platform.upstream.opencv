@@ -2,7 +2,7 @@ Name: opencv
 VCS:  #e3ca2f3bdcac02e9780c2de7001310a2a61a483e-dirty
 Summary: OpenCV library
 Version: 2.4.9
-Release: 8
+Release: 9
 Group: Development/Libraries
 License: BSD-2.0 and LGPL-2.1+
 Source0: %{name}-%{version}.tar.gz
@@ -147,7 +147,11 @@ make %{?jobs:-j%jobs}
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}%{_datadir}/license
+cp LICENSE %{buildroot}%{_datadir}/license/%{name}
+cp LICENSE.LGPL-2.1+ %{buildroot}%{_datadir}/license/%{name}-ffmpeg
 %make_install
+
 
 %clean
 rm -rf %{buildroot}
@@ -162,6 +166,7 @@ rm -rf %{buildroot}
 %manifest opencv.manifest
 %defattr(-,root,root,-)
 %{_libdir}/*.so.*
+%{_datadir}/license/*
 /usr/share/*
 
 %files devel
